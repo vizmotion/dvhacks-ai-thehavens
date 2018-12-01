@@ -1,0 +1,3 @@
+The clusters of features with highest dependency are: 
+Cluster 0: fixed acidity, volatile acidity, citric acid, density, pH, alcohol, quality
+Cluster 3: free sulfur dioxide, total sulfur dioxide
