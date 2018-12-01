@@ -9,3 +9,9 @@ Parts of the code:
     - Column Selection
     - Model Building
   - Document Generation
+
+2. UI
+  - Select Data Source
+  - View Relationships
+  - Evaluate models & connections
+  - Specific model exploration
