@@ -21,10 +21,10 @@ def get_RF_mse_sel(data,target,features):
     X = data[features]
     y = data[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=2018)
-    rf = RandomForestRegressor()
-    rf.fit(X_train,y_train)
-    y_pred = rf.predict(X_test)
-    return mean_squared_error(y_test, y_pred, multioutput='raw_values')
+    rf_rm = RandomForestRegressor()
+    rf_rm.fit(X_train,y_train)
+    y_pred = rf_rm.predict(X_test)
+    return mean_squared_error(y_test, y_pred, multioutput='raw_values'), rf_rm.feature_importances_
 
 def get_XG_mse_sel(data,target,features):
     """
@@ -41,7 +41,7 @@ def get_XG_mse_sel(data,target,features):
     xgb_rm = xgb.XGBRegressor(n_estimators=100, learning_rate=0.08, gamma=0, subsample=0.75,colsample_bytree=1, max_depth=7)
     bst = xgb_rm.fit(X_train, y_train)
     y_pred = xgb_rm.predict(X_test)
-    return mean_squared_error(y_test, y_pred, multioutput='raw_values')
+    return mean_squared_error(y_test, y_pred, multioutput='raw_values'),xgb_rm.feature_importances_
 
 def get_features(data,size):
     """
@@ -99,3 +99,25 @@ def get_min_XG_mse_bf(data,target,n_iterations=100):
                 mse_min = mse
                 features_min = features
     return features_min, mse_min
+
+def get_mse_fi_mo(data,target,feature_list_binary,alg_flag):
+    """
+    get_mse_fi_mo: function to find mse and features importance from a data set given
+    a target, and a binary list to encode features.
+    input:
+        data: pandas dataframe with the data
+        target: target feature to run the model against
+        feature_list_binary: binary list encoding if a feature is considered (1) or not (0)
+        alg_flag: what algorithm to use
+            - xgb: xgboost
+            - rf: random forest
+    output:
+        mse
+        feature importance list 
+    """
+    l_features = data.columns.drop(target)
+    features = [l_features[ii] for ii in range(len(l_features)) if feature_list_binary[ii] == 1]
+    if alg_flag == 'rf':
+        return get_RF_mse_sel(data,target,features)
+    if alg_flag == 'xgb':
+        return get_XGB_mse_sel(data,target,features)
