@@ -1,5 +1,5 @@
-import mo_lib
-import pandas as import pd
+import model_optimization.mo_lib as mo_lib
+import pandas as pd
 import numpy as np
 
 """
