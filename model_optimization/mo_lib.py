@@ -113,10 +113,12 @@ def get_mse_fi_mo(data,target,feature_list_binary,alg_flag):
             - rf: random forest
     output:
         mse
-        feature importance list 
+        feature importance list
     """
+    # a threshold on the fitness
+    th_bin = 0.7
     l_features = data.columns.drop(target)
-    features = [l_features[ii] for ii in range(len(l_features)) if feature_list_binary[ii] == 1]
+    features = [l_features[ii] for ii in range(len(l_features)) if feature_list_binary[ii]> th_bin]
     if alg_flag == 'rf':
         return get_RF_mse_sel(data,target,features)
     if alg_flag == 'xgb':
