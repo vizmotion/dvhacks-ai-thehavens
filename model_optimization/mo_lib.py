@@ -100,14 +100,14 @@ def get_min_XG_mse_bf(data,target,n_iterations=100):
                 features_min = features
     return features_min, mse_min
 
-def get_mse_fi_mo(data,target,feature_list_binary,alg_flag):
+def get_mse_fi_mo(feature_list, data, target, alg_flag, return_feature_importance=False, th_bin=0):
     """
     get_mse_fi_mo: function to find mse and features importance from a data set given
     a target, and a binary list to encode features.
     input:
         data: pandas dataframe with the data
         target: target feature to run the model against
-        feature_list_binary: binary list encoding if a feature is considered (1) or not (0)
+        feature_list: binary list encoding if a feature is considered (1) or not (0)
         alg_flag: what algorithm to use
             - xgb: xgboost
             - rf: random forest
@@ -115,11 +115,19 @@ def get_mse_fi_mo(data,target,feature_list_binary,alg_flag):
         mse
         feature importance list
     """
-    # a threshold on the fitness
-    th_bin = 0.7
     l_features = data.columns.drop(target)
-    features = [l_features[ii] for ii in range(len(l_features)) if feature_list_binary[ii]> th_bin]
+    features = [l_features[ii] for ii in range(len(l_features)) if feature_list[ii] > th_bin]
+
+    if not features:
+        return np.NaN
+
     if alg_flag == 'rf':
-        return get_RF_mse_sel(data,target,features)
+        mse, feat_imp = get_RF_mse_sel(data,target,features)
+        if return_feature_importance:
+            return mse[0], feat_imp
+        return mse[0]
     if alg_flag == 'xgb':
-        return get_XGB_mse_sel(data,target,features)
+        mse, feat_imp = get_XG_mse_sel(data,target,features)
+        if return_feature_importance:
+            return mse[0], feat_imp
+        return mse[0]
