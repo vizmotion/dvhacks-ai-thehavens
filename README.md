@@ -8,3 +8,4 @@ a) Core
 - Model Search
 - Column Selection
 - Model Building
+b) Document Generation
