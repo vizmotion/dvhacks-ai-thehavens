@@ -4,7 +4,7 @@
 
 AI-driven understanding of databases.
 
-![Knowlege Graph](https://github.com/chaitanya1123/dvhacks-ai-thehavens/blob/master/figures/KnowledgeGraph.png)
+![Knowlege Graph](https://github.com/chaitanya1123/dvhacks-ai-thehavens/blob/master/figures/KnowledgeGraph.png|width=100)
 
 ## The Need:
 
