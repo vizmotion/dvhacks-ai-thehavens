@@ -4,7 +4,7 @@
 
 AI-driven understanding of databases.
 
-![Knowlege Graph]('../figures/KnowledgeGraph.png')
+![Knowlege Graph]('figures/KnowledgeGraph.png')
 
 ## The Need:
 
