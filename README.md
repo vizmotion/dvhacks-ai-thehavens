@@ -7,7 +7,7 @@ AI-driven understanding of databases.
   <img src="https://github.com/chaitanya1123/dvhacks-ai-thehavens/blob/master/figures/KnowledgeGraph.png" width="400">
 </p>
 
-## Summary of the solution
+## Summary
 
 As a data science we often are asked to analyze data that has no documentation, business rules encoded in the system, and table/field relationships not well defined. Hours are spent working through the meaning of the data, asking business people open ended questions and creating our own data model only to find out at the very end of the analysis that we have made erroneous or incorrect assumptions.
 
@@ -19,7 +19,7 @@ The idea is to take an undocumented database and create a graph describing table
 3. Using our feature selection model we build a highly correlated mapping between tables and fields
 4. Using our graphing system we take that correlation model and build a visual graphical image to allow interactive investigation of these relationships.
 
-## The Problem:
+## The Problem
 
 Take an average database for a medium to large corporation: 114 tables with a total
 of 2600 fields, with an average of 26 fields per table. If we are lucky, there is a
@@ -32,7 +32,7 @@ That's what TheHavens.ai can do for you: a AI-driven, smart way to find the supe
 
 
 
-## Structure of the solution
+## The Solution
 
 <p align="center">
   <img src="https://github.com/chaitanya1123/dvhacks-ai-thehavens/blob/master/figures/SolutionArchitecture.png" width="1000">
@@ -61,3 +61,15 @@ That's what TheHavens.ai can do for you: a AI-driven, smart way to find the supe
   - View Relationships
   - Evaluate models & connections
   - Specific model exploration
+
+## Technology Stack
+1. sklearn
+2. flask
+3. networkx
+
+## Models
+1. ML: Random Forest, XGboost to evaluate Model Feature Selector
+2. Genetic Algorithm to optimize Model Feature Selector
+
+## How to run
+Don't 
