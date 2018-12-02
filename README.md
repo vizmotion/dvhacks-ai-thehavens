@@ -28,7 +28,7 @@ with the maximum information content while minimizing redundancy. If we are unlu
 
 Joining a set of 10 tables with 5 fields will yield to order 5^10 ~10 million possibilities worst case scenario. So brute force is out of the question. So we need a smart way to learn the relevant fields across all databases that can be used to form the super table with maximal information content.
 
-That's what TheHavens.ai can do for you: a AI-driven, smart way to find the super table with maximal information while optimizing cost and computer power.  
+That's what DataRovr.ai can do for you: a AI-driven, smart way to find the super table with maximal information while optimizing cost and computer power.  
 
 
 
