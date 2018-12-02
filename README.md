@@ -70,10 +70,12 @@ That's what DataRovr.ai can do for you: a AI-driven, smart way to find the super
 
 ## Technology Stack
 1. sklearn, xgboost
-2. flask
-3. networkx
-4. MySQL
-5. python
+2. Flask
+3. Bootstrap
+4. D3.js
+5. Networkx
+6. MySQL
+7. Python
 
 ## Models
 1. ML: Random Forest, XGboost to evaluate Model Feature Selector
