@@ -39,7 +39,7 @@ That's what TheHavens.ai can do for you: a AI-driven, smart way to find the supe
 4. Descriptive Analytics: The insights of the solution will be summarized as knowledge graphs, description of the relationships between the features.
 
 <p align="center">
-  <img src="https://github.com/chaitanya1123/dvhacks-ai-thehavens/blob/master/figures/UI_screenshot.png" width="400">
+  <img src="https://github.com/chaitanya1123/dvhacks-ai-thehavens/blob/master/figures/UI_screenshot.png" width="1000">
 </p>
 
 ## Feature Roadmap
