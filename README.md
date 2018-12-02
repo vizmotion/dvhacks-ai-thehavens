@@ -27,7 +27,7 @@ Absolutely,
 
 
 
-Structure of the solution
+## Structure of the solution
 1. Data Connector
 2. Table Relationship Identifier
 3. Model Feature Selector
@@ -35,7 +35,7 @@ Structure of the solution
 
 
 
-
+## Feature Roadmap
 1. Basic Connection/Map Schema
   - Core
     - Correlation
