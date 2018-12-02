@@ -20,8 +20,8 @@ def get_RF_mse_sel(data,target,features):
     """
     X = data[features]
     y = data[target]
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=2018)
-    rf_rm = RandomForestRegressor()
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33) #, random_state=2018)
+    rf_rm = RandomForestRegressor(max_depth=3, min_samples_leaf=10)
     rf_rm.fit(X_train,y_train)
     y_pred = rf_rm.predict(X_test)
     return mean_squared_error(y_test, y_pred, multioutput='raw_values'), rf_rm.feature_importances_
@@ -37,7 +37,7 @@ def get_XG_mse_sel(data,target,features):
     """
     X = data[features]
     y = data[target]
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=2018)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33) #, random_state=2018)
     xgb_rm = xgb.XGBRegressor(n_estimators=100, learning_rate=0.08, gamma=0, subsample=0.75,colsample_bytree=1, max_depth=7)
     bst = xgb_rm.fit(X_train, y_train)
     y_pred = xgb_rm.predict(X_test)
@@ -100,7 +100,7 @@ def get_min_XG_mse_bf(data,target,n_iterations=100):
                 features_min = features
     return features_min, mse_min
 
-def get_mse_fi_mo(feature_list, data, target, alg_flag, return_feature_importance=False, th_bin=0):
+def get_mse_fi_mo(feature_list, data, target, alg_flag, return_feature_importance=True, th_bin=0.5):
     """
     get_mse_fi_mo: function to find mse and features importance from a data set given
     a target, and a binary list to encode features.
@@ -123,11 +123,20 @@ def get_mse_fi_mo(feature_list, data, target, alg_flag, return_feature_importanc
 
     if alg_flag == 'rf':
         mse, feat_imp = get_RF_mse_sel(data,target,features)
-        if return_feature_importance:
-            return mse[0], feat_imp
-        return mse[0]
     if alg_flag == 'xgb':
         mse, feat_imp = get_XG_mse_sel(data,target,features)
-        if return_feature_importance:
-            return mse[0], feat_imp
-        return mse[0]
+
+    if return_feature_importance:
+        f_arry = []
+        feat_imp = feat_imp.tolist()
+
+        for f in feature_list:
+            if not f:
+                f_arry.append(0)
+            else:
+                f_arry.append(feat_imp.pop(0))
+
+        return mse[0], f_arry
+
+
+    return mse[0]

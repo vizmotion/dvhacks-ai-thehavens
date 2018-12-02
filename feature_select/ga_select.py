@@ -3,7 +3,7 @@ from random import random, seed
 import cma
 
 from model_optimization.mo_lib import get_mse_fi_mo
-
+from feature_select.ga import GeneticAlgorithmFeatureSelection
 
 def select_features_cma(data, target):
     """
@@ -32,5 +32,10 @@ def select_features_cma(data, target):
 if __name__ == '__main__':
     """Load test data and run optimization"""
     df = pd.read_csv('../data/winequality-red.csv')
-    select_features_cma(df, 'quality')
+    # select_features_cma(df, 'quality')
 
+    ga = GeneticAlgorithmFeatureSelection(get_mse_fi_mo, df, 'quality', fitness_args=['rf'])
+
+    ga.run_iterations(1000)
+
+    print('Done!')
