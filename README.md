@@ -62,8 +62,14 @@ That's what DataRovr.ai can do for you: a AI-driven, smart way to find the super
   - Evaluate models & connections
   - Specific model exploration
 
+3. Next steps
+  - Data Augmentation: Third party data
+  - NLP summarization of findings
+  
+
+
 ## Technology Stack
-1. sklearn
+1. sklearn, xgboost
 2. flask
 3. networkx
 4. MySQL
