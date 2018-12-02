@@ -35,7 +35,7 @@ That's what TheHavens.ai can do for you: a AI-driven, smart way to find the supe
 ## Structure of the solution
 1. Data Connector: Plugging Architecture to connect to arbitrary number of MySQL databases.
 2. Table Relationship Identifier: Defining features and meta-features, to compute inclusion dependencies and classifying them as foreign key constrains.   [here](https://www.researchgate.net/publication/221035501)
-3. Model Feature Selector
+3. Model Feature Selector: Using Genetic Algorithms we can find the set of features that can be selected to maximize the understanding of the database and enable the data scientist to focus on the most relevant features. 
 4. Descriptive Analytics: The insights of the solution will be summarized as knowledge graphs, description of the relationships between the features.
 
 
