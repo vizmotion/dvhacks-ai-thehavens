@@ -38,7 +38,9 @@ That's what TheHavens.ai can do for you: a AI-driven, smart way to find the supe
 3. Model Feature Selector: Using Genetic Algorithms we can find the set of features that can be selected to maximize the understanding of the database and enable the data scientist to focus on the most relevant features.
 4. Descriptive Analytics: The insights of the solution will be summarized as knowledge graphs, description of the relationships between the features.
 
-
+<p align="center">
+  <img src="https://github.com/chaitanya1123/dvhacks-ai-thehavens/blob/master/figures/UI_screenshot.png" width="400">
+</p>
 
 ## Feature Roadmap
 1. Basic Connection/Map Schema
