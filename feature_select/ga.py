@@ -7,6 +7,7 @@ from functools import total_ordering
 
 @total_ordering
 class GAIndividual(object):
+    """Genetic algorithm individual, keeps track of features selected"""
 
     def __init__(self):
         self.feature_vector = []
@@ -35,9 +36,11 @@ class GAIndividual(object):
         return hash(frozenset(self.feature_vector))
 
     def mutate(self, mutation_feat_imp):
-        """Mutate features w/ probability rate based on feature importance"""
-        # """For each feature in feature_vector, mutate it with a probability inversely proportional to that feature's
-        # importance"""
+        """Mutate features w/ probability rate inversely proportional to feature importance.  Modifies individual in place.
+
+        :param mutation_feat_imp: ndarray of feature importances
+        :return: Mutated individual (reference to original object, modified in place)
+        """
 
         if not self.feature_vector:
             return self
@@ -60,6 +63,11 @@ class GAIndividual(object):
 
     @classmethod
     def random(cls, size):
+        """Create a random individual
+
+        :param size: length of the feature vector
+        :return ind: new individual
+        """
         ind = GAIndividual()
         while not ind.feature_vector or max(ind.feature_vector) == 0:
             ind.feature_vector = [randint(0, 1) for i in range(size)]
@@ -67,7 +75,12 @@ class GAIndividual(object):
 
     @classmethod
     def crossover(cls, ind1, ind2):
-        """Implement a 2-point crossover"""
+        """Implement a 2-point crossover
+
+        :return: list containing two children
+        :param ind1: Individual 1
+        :param ind2: Individual 2"""
+
         child1 = GAIndividual()
         child2 = GAIndividual()
 
@@ -86,6 +99,10 @@ class GAIndividual(object):
 
     @classmethod
     def full_rank(cls, individual_size):
+        """Generate an individual with all features selected
+
+        :return: individual with all features selected
+        :param individual_size: Length of feature vector"""
         ind = GAIndividual()
         ind.feature_vector = [1 for x in range(individual_size)]
         return ind
@@ -95,6 +112,18 @@ class GeneticAlgorithmFeatureSelection(object):
 
     def __init__(self, fitness_func, data, target, mu=5, lambda_=20, fitness_args=[],
                  mutation_rate=0.1, sample_size=1000):
+        """
+        Create a new genetic algorithm for feature selection
+
+        :param fitness_func: function to use for feature selection.  must match prototype func(feature_list, data, target) and return MSE and feature importance list
+        :param data: DataFrame containing all data to use for selection
+        :param target: Column name of target column
+        :param mu: number of parent generation to retain for each new generation
+        :param lambda_: number of offspring to generate at each iteration
+        :param fitness_args: list of arguments to pass to fitness_func
+        :param mutation_rate: base rate for mutations - mutation rates scale between (1-mutation_rate) and mutation_rate
+        :param sample_size: Size of sample taken from data to use for fitness evaluation
+        """
         self.data = data
         self.target = target
         self.fitness_func = fitness_func
@@ -119,8 +148,10 @@ class GeneticAlgorithmFeatureSelection(object):
 
         self.iterate()
 
-
     def iterate(self):
+        """
+        Run one iteration of the algorithm.  Generate new generation and evaluate fitness
+        """
         # Generate current generation if needed
         if not self.current_generation:
             self.current_generation = self.generate_population(self.lambda_)
@@ -151,11 +182,19 @@ class GeneticAlgorithmFeatureSelection(object):
 
     # Generate population
     def generate_population(self, num_individuals):
+        """
+        Generate a population for this algorithm
+        :param num_individuals: number to generate
+        :return: randomly generated population, always contains at least one full-rank member
+        """
         return [GAIndividual.random(self.individual_size)
                     for j in range(num_individuals-1)] + [GAIndividual.full_rank(self.individual_size)]  # Always have a full-rank
 
     # Evaluate fitness
     def evaluate_fitness(self):
+        """
+        Evaluate the fitness of each individual in the current generation and update feature importances
+        """
         fitness_data = self.data if self.data.shape[0] < self.sample_size else self.data.sample(self.sample_size)
 
         for x in self.current_generation:
@@ -188,5 +227,9 @@ class GeneticAlgorithmFeatureSelection(object):
         self.current_generation = sorted(self.current_generation, reverse=True)
 
     def run_iterations(self, num_iterations):
+        """
+        Run multiple iterations
+        :param num_iterations: number of iterations to run
+        """
         for x in range(num_iterations):
             self.iterate()
