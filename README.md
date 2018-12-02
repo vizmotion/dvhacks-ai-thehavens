@@ -2,9 +2,18 @@
 
 # TheHavens.ai
 
+AI-driven understanding of databases.
+
 ## The Need:
 
-Take an average database for a medium to large corporation,
+Take an average database for a medium to large corporation: 114 tables with a total
+of 2600 fields, with an average of 26 fields per table. If we are lucky, there is a
+small set of key fields that can be used to join the tables to create a super-table
+with the maximum information content while minimizing redundancy. If we are unlucky -and the planets do not align often- we don't have the key set of fields before hand and we need to discover them.
+
+Joining a set of 10 tables with 5 fields will yield to order 5^10 ~10 million possibilities worst case scenario. So brute force is out of the question. So we need a smart way to learn the relevant fields across all databases that can be used to form the super table with maximal information content.
+
+That's what TheHavens.ai can do for you: a AI-driven, smart way to find the super table with maximal information while optimizing cost and computer power.  
 
 ## Can we do it?
 YES, but...
