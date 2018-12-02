@@ -4,6 +4,8 @@
 
 AI-driven understanding of databases.
 
+![Knowlege Graph]('../figures/KnowledgeGraph.png')
+
 ## The Need:
 
 Take an average database for a medium to large corporation: 114 tables with a total
