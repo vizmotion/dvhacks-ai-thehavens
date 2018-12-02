@@ -14,10 +14,10 @@ As a data science we often are asked to analyze data that has no documentation, 
 Now through the power of AI we are able to take these legacy databases and automatically develop a relationship graph that allows more directed questions and discover to find hidden or lost meaning to the database.
 
 The idea is to take an undocumented database and create a graph describing table and field relationships. The following steps are used to develop this graph:
-    1. Connect to a database with multiple undocumented tables
-    2. Using our table connection algorithm (see paper xxx) we create a highly likely table primary and foreign key connection.
-    3. Using our feature selection model we build a highly correlated mapping between tables and fields
-    4. Using our graphing system we take that correlation model and build a visual graphical image to allow interactive investigation of these relationships.
+1. Connect to a database with multiple undocumented tables
+2. Using our table connection algorithm (see paper xxx) we create a highly likely table primary and foreign key connection.
+3. Using our feature selection model we build a highly correlated mapping between tables and fields
+4. Using our graphing system we take that correlation model and build a visual graphical image to allow interactive investigation of these relationships.
 
 ## The Problem:
 
@@ -35,7 +35,7 @@ That's what TheHavens.ai can do for you: a AI-driven, smart way to find the supe
 ## Structure of the solution
 1. Data Connector: Plugging Architecture to connect to arbitrary number of MySQL databases.
 2. Table Relationship Identifier: Defining features and meta-features, to compute inclusion dependencies and classifying them as foreign key constrains.   [here](https://www.researchgate.net/publication/221035501)
-3. Model Feature Selector: Using Genetic Algorithms we can find the set of features that can be selected to maximize the understanding of the database and enable the data scientist to focus on the most relevant features. 
+3. Model Feature Selector: Using Genetic Algorithms we can find the set of features that can be selected to maximize the understanding of the database and enable the data scientist to focus on the most relevant features.
 4. Descriptive Analytics: The insights of the solution will be summarized as knowledge graphs, description of the relationships between the features.
 
 
